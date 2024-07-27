@@ -6,7 +6,6 @@ import { errorMiddleware } from "./middlewares/error.js";
 import NodeCache from "node-cache";
 import {config} from "dotenv";
 import morgan from 'morgan';
-import Stripe from "stripe";
 import cors from "cors";
 
 //importing Routes
