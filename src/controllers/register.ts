@@ -41,19 +41,24 @@ export const newHelper = TryCatch(
 
 export const newDonor = TryCatch(
     async (
-    req:Request<{},{},DonorType[]>, 
+    req:Request, 
     res:Response, 
     next:NextFunction)=> {
         const {id} = req.query;
 
         const userId = String(id);
-        const donors: DonorType[]= req.body;
+        const data = req.body;
+        const donors = data.allFormsData;
 
-        for (const donorData of donors) {
+        for (const [index, donorData] of donors.entries()) {
             const { name, email, gender, bloodGroup} = donorData;
 
-            if (!bloodGroup || !name || !email || !gender) {
+            if (index==0 && (!blood || !name || !email || !gender)) {
+                console.log("not present");
                 return next(new ErrorHandler("Please add all fields", 400));
+            }
+            else if(!blood || !name || !email || !gender){
+                continue;
             }
 
             const donor = await Donor.create({
