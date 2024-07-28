@@ -66,7 +66,7 @@ export const newDonor = TryCatch(
                 email,
                 gender,
                 userId,
-                bloodGroup
+                blood
             });
         }
 
