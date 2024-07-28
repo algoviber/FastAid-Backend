@@ -51,7 +51,7 @@ export const newDonor = TryCatch(
         const donors = data.allFormsData;
 
         for (const [index, donorData] of donors.entries()) {
-            const { name, email, gender, bloodGroup} = donorData;
+            const { name, email, gender, blood} = donorData;
 
             if (index==0 && (!blood || !name || !email || !gender)) {
                 console.log("not present");
