@@ -59,6 +59,12 @@ export const newDonor = TryCatch(
                 continue;
             }
 
+            const existingDonor = await Donor.findOne({ email });
+
+            if (existingDonor) {
+                return next(new ErrorHandler(`Email ${email} already exist`, 400));
+            }
+
             const donor = await Donor.create({
                 name,
                 email,
@@ -98,6 +104,12 @@ export const newFriend = TryCatch(
             }
             else if(!name || !email || !gender){
                 continue;
+            }
+
+            const existingContact = await Friend.findOne({ email });
+
+            if (existingContact) {
+                return next(new ErrorHandler(`Email ${email} already exist`, 400));
             }
 
             const contact = await Friend.create({
